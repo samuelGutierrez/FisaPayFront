@@ -1,0 +1,35 @@
+<div id="wrapper">
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div class="content">
+            <!-- Page Headign -->
+            <div class="pt-3 pb-2 align-items-center justify-content-between mb-2 bg-title">
+                <h1 class="h5 mb-0 text-white-800 col-md-12">
+                    Adm. Usuarios
+                </h1>
+                <div class="col-md-12">
+                    <p>Lista de usuarios</p>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-row align-items-center justify-content-between">
+                    <div class="col">
+                        <div class="input-group mb-3 mt-3 input-search">
+                            <input type="text" class="form-control form-control-sm searchSpacing "
+                                placeholder="Buscar..." (keyup)="onQuickFilterChanged()" [(ngModel)]="searchValue"
+                                [ngModelOptions]="{standalone: true}">
+                            <div class="input-group-append ">
+                                <img src="../../../assets/loupe.png" class="input-group-text imgDimension" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ag-grid-angular style="width: auto; height: 400px" class="ag-theme-custom-angular" [animateRows]="true"
+                    (gridReady)="onGridReady($event)" (firstDataRendered)='onFirstDataRendered($event)'
+                    [pagination]="true" [rowData]="listUser" [accentedSort]="true" [columnDefs]="cabecera"
+                    [localeText]="localText" [overlayLoadingTemplate]="overlayLoadingTemplate"
+                    [overlayNoRowsTemplate]="overlayNoRowsTemplate">
+                </ag-grid-angular>
+            </div>
+        </div>
+    </div>
+</div>

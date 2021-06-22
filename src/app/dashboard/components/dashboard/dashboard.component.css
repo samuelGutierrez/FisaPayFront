@@ -1,0 +1,126 @@
+#wrapper {
+    display: flex;
+}
+
+#wrapper #content-wrapper {
+    background-color: #f8f9fc;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#wrapper #content-wrapper #content {
+    flex: 1 0 auto;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.flex-column {
+    flex-direction: column !important;
+}
+
+.flex-column-reverse {
+    flex-direction: column-reverse !important;
+}
+img{
+    height: 100%;
+    width: 100%;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    margin: 0px;
+    padding: 0px;
+}
+
+.card{
+    margin-left: 3%;
+    padding: 0px;
+}
+
+.card-header{
+    padding: 0px;
+    margin: 0px !important;
+    height: 27%;
+    
+
+}
+
+.icon-home{
+    padding: 0px;
+    margin: 0px;
+    height: 100px;
+    width: 100px;
+    margin-top: -11%;
+    margin-left: -11%;   
+}
+
+.bi-arrow-right-short{
+    font-size: 3rem;
+    margin-top: -14px;
+}
+
+.btn-tierra{
+    background-color: #B64D25;
+    border: none;
+}
+.btn-agua{
+    background-color: #0269CD;
+    border: none;
+}
+.btn-tejido{
+    background-color:  #1B7900;
+    border: none;
+}
+.btn-soluciones{
+    background-color: #16AED7;
+    border: none;
+}
+
+.card-body {
+    margin-bottom: -32%;
+}
+
+.card-text{
+    padding: 7px;
+}
+
+.lbl-title-card{
+    overflow: hidden;
+    -webkit-text-stroke: medium;
+}
+
+.cards-option{
+    justify-content: center;
+    background-color: #d6d8d93d;
+    margin-top: -6%;
+
+}
+
+.text-info-home{
+    text-align: left;
+    padding: 5%;
+    color: #6f767d;
+}
+
+.know-more{
+    text-align: -webkit-center;
+}
+.btn-more{
+    width: 50%;
+}
+
+.bar-footer{
+    height: 50px;
+    background: #0269CD;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+li{
+    padding: 5px;
+}
+
+.img-farm{
+    padding: 3%;
+}

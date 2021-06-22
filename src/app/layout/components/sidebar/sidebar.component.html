@@ -1,0 +1,55 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutGap="100px">
+        <ul #mainMenu class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled">
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a #collapsePagesAdmUsuarios class="nav-link collapsed" #navbarTogglerUser type="button"
+                    data-toggle="collapse" data-target="#collapsePagesAdmUsuarios"
+                    aria-controls="collapsePagesAdmUsuarios" (click)="cerrarMenuAdmUsuarios()"
+                    [attr.aria-expanded]="mostrarMenuAdminUsuario" aria-label="Toggle navigation">
+                    <i class="bi bi-person"></i>
+                    <span>Adm. Usuarios</span>
+                </a>
+                <div class="collapse navbar-collapse" [ngClass]="{ 'show': mostrarMenuAdminUsuario }"
+                    id="collapsePagesAdmUsuarios" data-toggle="collapse" data-target="#navbar-collapse">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Usuarios</h6>
+                        <a class="collapse-item" (click)="redirectToOption('usuarios/registroUsuario')">
+                            Registro de Usuarios</a>
+                        <a class="collapse-item" (click)="redirectToOption('usuarios/listaUsuario')">
+                            Lista de Usuarios</a>
+                    </div>
+                </div>
+            </li>
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a #collapsePagesAdmEmpleados class="nav-link collapsed" #navbarTogglerUser type="button"
+                    data-toggle="collapse" data-target="#collapsePagesAdmEmpleados"
+                    aria-controls="collapsePagesAdmEmpleados" (click)="cerrarMenuAdmEmpleados()"
+                    [attr.aria-expanded]="mostrarMenuAdminEmpleados" aria-label="Toggle navigation">
+                    <i class="bi bi-person"></i>
+                    <span>Adm. Empleados</span>
+                </a>
+                <div class="collapse navbar-collapse" [ngClass]="{ 'show': mostrarMenuAdminEmpleados }"
+                    id="collapsePagesAdmEmpleados" data-toggle="collapse" data-target="#navbar-collapse">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Empleados</h6>
+                        <a class="collapse-item" (click)="redirectToOption('empleados/listaEmpleados')">
+                            Listado de Empleados</a>
+                        <a class="collapse-item" (click)="redirectToOption('empleados/registroEmpleados')">
+                            Registro de Empleados</a>
+                    </div>
+                </div>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
+            <div class="text-center d-none d-md-inline" *ngIf="isLoggedIn">
+                <li class="nav-item">
+                    <a routerLink="/login" class="nav-link" (click)="logout()">
+                        <i class="bi bi-box-arrow-left"></i>
+                        <span>Cierre de Sesión</span>
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<div id="wrapper">
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <div class="pt-3 pb-2 align-items-center justify-content-between mb-2 bg-title">
+                <h1 class="h5 mb-0 text-white-800 col-md-12">
+                    Registro de usuarios
+                </h1>
+            </div>
+            <div class="col-xl-12 col-lg-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Sección para crear un usuario</h6>
+                        <div class="col"></div>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="formRegister" (ngSubmit)="onSubmit()" autocomplete="off">
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="" class="mb-0">Cedula del Empleado:</label>
+                                    <input type="number" class="form-control" name="cedula" id="cedula"
+                                        formControlName="cedula">
+                                    <div *ngIf="this.formRegister.get('cedula').invalid && (this.formRegister.get('cedula').dirty || this.formRegister.get('cedula').touched)"
+                                        class="alert alert-danger">
+                                        <div *ngIf="this.formRegister.get('cedula').errors.required">
+                                            ¡La cedula del emplead@ es una campo obligatorio!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="" class="mb-0">Usuario:</label>
+                                    <input type="text" class="form-control" name="usuario" id="usuario"
+                                        formControlName="usuario">
+                                    <div *ngIf="this.formRegister.get('usuario').invalid && (this.formRegister.get('usuario').dirty || this.formRegister.get('usuario').touched)"
+                                        class="alert alert-danger">
+                                        <div *ngIf="this.formRegister.get('usuario').errors.required">
+                                            ¡El campo de usuario es obligatorio!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="" class="mb-0">Contraseña:</label>
+                                    <input type="password" class="form-control" minlength="6" name="passwordHash"
+                                        autocomplete="doNotAutoComplete" autocorrect="doNotAutoComplete"
+                                        id="passwordHash" formControlName="passwordHash">
+                                    <div class="alert alert-danger" role="alert"
+                                        *ngIf="this.formRegister.get('passwordHash').invalid && this.formRegister.get('passwordHash').touched">
+                                        ¡La contraseña es una campo obligatorio!
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center justify-content-between"
+                                    style="width: 100%;">
+                                    <div class="col"></div>
+                                    <a class="btn btn-sm  btn-icon-split blue mx-2" style="border-radius: 20px;"
+                                        type="button" (click)="limpiar()">
+                                        <span class="icon text-white-50">
+                                            <i class="bi bi-x"></i>
+                                        </span>
+                                        <span class="text">Limpiar</span>
+                                    </a>
+                                    <button class="btn btn-sm  btn-icon-split green" style="border-radius: 20px;"
+                                        type="submit">
+                                        <span class="icon text-white-50">
+                                            <i class="bi bi-save"></i>
+                                        </span>
+                                        <span class="text">Registrar</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

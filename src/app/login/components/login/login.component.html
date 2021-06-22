@@ -1,0 +1,35 @@
+<div fxLayout="row" fxLayoutGap="20px">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <div class="fadeIn first">
+                <!-- <img src="../../assets/logo.png" id="icon" alt="User Icon"> -->
+                <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <div class="form-group">
+                        <input type="text" class="fadeIn second" name="usuario" [(ngModel)]="form.usuario" #usuario="ngModel"
+                            placeholder="Usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="fadeIn second" name="password" [(ngModel)]="form.password"
+                            placeholder="Contraseña" required #password="ngModel" />
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="usuario.errors && f.submitted">
+                        ¡El usuario es requerido!
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
+                        <div *ngIf="password.errors.required">La contraseña es requerida</div>
+                        <div *ngIf="password.errors.minlength">
+                            La contraseña es de minimo 6 caracteres
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 1rem;padding-top: 1rem; align-content: center;">
+                        <button class="btn btn-success"
+                            style="border-radius: 20px;margin-right: 0px;padding-right: 14px;width: 50%; align-content: center;">
+                            <span class="spinner-border-sm mr-1"></span>
+                            Iniciar sesión
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
