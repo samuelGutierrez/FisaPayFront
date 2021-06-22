@@ -1,1 +1,71 @@
-<p>actualizar-empleados works!</p>
+<div id="wrapper">
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <div class="pt-3 pb-2 align-items-center justify-content-between mb-2 bg-title">
+                <h1 class="h5 mb-0 text-white-800 col-md-12">
+                    Actualización de empleados
+                </h1>
+            </div>
+            <div class="col-xl-12 col-lg-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Sección para actualizar un empleado</h6>
+                        <div class="col"></div>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="formUpdateEmpleado" (ngSubmit)="onSubmit()" autocomplete="off">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="" class="mb-0">Nombre Completo:</label>
+                                    <input type="text" class="form-control" name="nombres" id="nombres"
+                                        formControlName="nombres">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="mb-0" for="disabledTextInput">Sexo:</label>
+                                    <select class="form-select form-control-sm" name="sexo" id="sexo"
+                                        formControlName="sexo">
+                                        <option selected>Seleccione un item</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="" class="mb-0">Salario:</label>
+                                    <input type="number" class="form-control" name="salario" id="salario"
+                                        formControlName="salario">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="mb-0" for="disabledTextInput">¿Esta vacunado con el Covid?:</label>
+                                    <select class="form-select form-control-sm" name="vacunaCovid" id="vacunaCovid"
+                                        formControlName="vacunaCovid">
+                                        <option selected>Seleccione un item</option>
+                                        <option value="si">Si</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                                <div class="d-flex flex-row align-items-center justify-content-between"
+                                    style="width: 100%;">
+                                    <div class="col"></div>
+                                    <button class="btn btn-sm  btn-icon-split gray" style="border-radius: 20px;"
+                                        type="button" (click)="refresh()">
+                                        <span class="icon text-white-50">
+                                            <i class="bi bi-save"></i>
+                                        </span>
+                                        <span class="text">Regresar</span>
+                                    </button>
+                                    <button class="btn btn-sm  btn-icon-split green" style="border-radius: 20px;"
+                                        type="submit">
+                                        <span class="icon text-white-50">
+                                            <i class="bi bi-save"></i>
+                                        </span>
+                                        <span class="text">Actualizar</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

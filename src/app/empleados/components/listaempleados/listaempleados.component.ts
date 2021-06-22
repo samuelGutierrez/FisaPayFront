@@ -65,6 +65,10 @@ export class ListaempleadosComponent implements OnInit {
   overlayLoadingTemplate = "";
   overlayNoRowsTemplate = "";
   localText = AG_GRID_LOCALES.ES;
+  
+  IdEmpleado;
+  isShow: Boolean = true;
+  isShowUpdate: Boolean = false;
   //#endregion
 
   constructor(
@@ -97,11 +101,12 @@ export class ListaempleadosComponent implements OnInit {
 
   //#region Accion Botones
   onClickActualizar(id) {
-
+    this.IdEmpleado = id;
+    this.isShow = false;
+    this.isShowUpdate = true;
   }
 
   onClickEliminar(id) {
-    console.log(id)
     this._empleadoService.eliminarEmpleado(id).subscribe(
       data => {
         this.showToasterSuccess("Empleado eliminado con exito", 'Mensaje:');

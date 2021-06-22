@@ -11,9 +11,6 @@ import { EmpleadoService, NotificationService } from 'src/app/core/services';
 export class RegistrarempleadosComponent implements OnInit {
 
   //#region Variables para poder crear un usuario
-  isSuccessful = false;
-  isSignUpFailed = false;
-  errorMessage = '';
   vacunado: boolean = false;
   //#endregion
 
@@ -38,7 +35,6 @@ export class RegistrarempleadosComponent implements OnInit {
   });
 
   onSubmit() {
-    console.log('formulario', this.formRegisterEmpleado);
     if (!this.formRegisterEmpleado.valid) {
       this.formRegisterEmpleado.markAllAsTouched();
       this.showToasterWarning('Por favor verifique que toda la información del empleado se encuentre correctamente diligenciada', "Mensaje:")

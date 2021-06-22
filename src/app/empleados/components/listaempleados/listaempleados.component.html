@@ -10,7 +10,7 @@
                     <p>Lista de usuarios</p>
                 </div>
             </div>
-            <div class="card-body">
+            <div *ngIf="isShow" class="card-body">
                 <div class="d-flex flex-row align-items-center justify-content-between">
                     <div class="col">
                         <div class="input-group mb-3 mt-3 input-search">
@@ -30,51 +30,9 @@
                     [overlayNoRowsTemplate]="overlayNoRowsTemplate" [frameworkComponents]="frameworkComponents">
                 </ag-grid-angular>
             </div>
+            <div *ngIf="isShowUpdate" class="col-xl-12 col-lg-12">
+                <app-actualizar-empleados [IdEmpleado]="IdEmpleado"></app-actualizar-empleados>
+            </div>
         </div>
     </div>
 </div>
-
-
-
-<!-- <div id="wrapper">
-    <div id="content-wrapper" class="d-flex flex-column">
-        <div class="content">
-            <div class="pt-3 pb-2 align-items-center justify-content-between mb-2 bg-title">
-                <h1 class="h5 mb-0 text-white-800 col-md-12">
-                    Adm. Empleados
-                </h1>
-                <div class="col-md-12">
-                    <p>Lista de empleados</p>
-                </div>
-            </div>
-            <div class="card-body">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Cedula</th>
-                            <th>Nombre Completo</th>
-                            <th>Sexo</th>
-                            <th>Fecha Nacimiento</th>
-                            <th>Edad a la Fecha</th>
-                            <th>Salario</th>
-                            <th>Vacuna Covid</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let itemEmpleado of empleados">
-                            <td>{{itemEmpleado.cedula}}</td>
-                            <td>{{itemEmpleado.nombreCompleto}}</td>
-                            <td>{{itemEmpleado.sexo}}</td>
-                            <td>{{itemEmpleado.fechaNacimiento}}</td>
-                            <td>{{itemEmpleado.edadActual}}</td>
-                            <td>{{itemEmpleado.salario}}</td>
-                            <td>{{itemEmpleado.vacunaCovid}}</td>
-                            <td><i class="bi bi-pencil-square"></i> | <i class="bi bi-trash"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div> -->
