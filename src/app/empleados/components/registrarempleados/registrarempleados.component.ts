@@ -10,9 +10,7 @@ import { EmpleadoService, NotificationService } from 'src/app/core/services';
 })
 export class RegistrarempleadosComponent implements OnInit {
 
-  //#region Variables para poder crear un usuario
   vacunado: boolean = false;
-  //#endregion
 
   constructor(
     private _empleadoService: EmpleadoService,
@@ -49,24 +47,33 @@ export class RegistrarempleadosComponent implements OnInit {
       this.vacunado = false;
     }
 
-    const registrarEmpleado: RegistrarEmpleado = {
-      cedula: this.formRegisterEmpleado.get('cedula').value,
-      nombres: this.formRegisterEmpleado.get('nombres').value.toString(),
-      sexo: this.formRegisterEmpleado.get('sexo').value,
-      fechaNacimiento: this.formRegisterEmpleado.get('fechaNacimiento').value,
-      salario: this.formRegisterEmpleado.get('salario').value,
-      vacunaCovid: this.vacunado,
-      activo: true
-    }
+    let edad = getEdad(this.formRegisterEmpleado.get('fechaNacimiento').value);
 
-    this._empleadoService.registrarEmpleado(registrarEmpleado).subscribe(
-      data => {
-        this.showToasterSuccess("¡El empleado se creo con exito!", "Mensaje:")
-        this.formRegisterEmpleado.reset();
-      },
-      err => {
-        this.showToasterWarning("Hubo un error", "Mensaje:")
-      });
+    if (edad < 18) {
+      this.showToasterWarning("No puede registrar menores de edad", "Mensaje:")
+    } else {
+
+      const registrarEmpleado: RegistrarEmpleado = {
+        cedula: this.formRegisterEmpleado.get('cedula').value,
+        nombres: this.formRegisterEmpleado.get('nombres').value.toString(),
+        sexo: this.formRegisterEmpleado.get('sexo').value,
+        fechaNacimiento: this.formRegisterEmpleado.get('fechaNacimiento').value,
+        salario: this.formRegisterEmpleado.get('salario').value,
+        vacunaCovid: this.vacunado,
+        activo: true
+      }
+
+
+      this._empleadoService.registrarEmpleado(registrarEmpleado).subscribe(
+        data => {
+          this.showToasterSuccess("¡El empleado se creo con exito!", "Mensaje:")
+          this.formRegisterEmpleado.reset();
+        },
+        err => {
+          this.showToasterWarning("Hubo un error", "Mensaje:")
+        });
+
+    }
   }
 
   //#region notificacion
@@ -82,4 +89,18 @@ export class RegistrarempleadosComponent implements OnInit {
     this.notifyService.showWarning(sms, title)
   }
   //#endregion
+}
+
+function getEdad(dateString) {
+  let hoy = new Date()
+  let fechaNacimiento = new Date(dateString)
+  let edad = hoy.getFullYear() - fechaNacimiento.getFullYear()
+  let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth()
+  if (
+    diferenciaMeses < 0 ||
+    (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())
+  ) {
+    edad--
+  }
+  return edad
 }

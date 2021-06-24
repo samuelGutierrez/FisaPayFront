@@ -14,7 +14,11 @@ export class ActualizarEmpleadosComponent implements OnInit {
   @Input() IdEmpleado;
 
   vacunado: boolean = false;
-  listEmpleados : ListaEmpleados;
+  listEmpleados: ListaEmpleados;
+  nombre: string;
+  sexo: string;
+  salario: number;
+  vacunaCovid: string;
 
   constructor(
     private _empleadoService: EmpleadoService,
@@ -23,39 +27,50 @@ export class ActualizarEmpleadosComponent implements OnInit {
     private _router: Router
   ) { }
 
+  //Formulario para actualizar un empleado
+  formUpdateEmpleado = this._formBuilder.group({
+    nombres: [],
+    sexo: [''],
+    salario: [''],
+    vacunaCovid: [''],
+  });
+
   ngOnInit(): void {
-    this._empleadoService.getListaEmpleados().subscribe(
+    this._empleadoService.getbyId(this.IdEmpleado).subscribe(
       data => {
-        this.listEmpleados = data as ListaEmpleados;
+        let listData = []
+        listData.push(data);
+        this.nombre = listData[0].nombres;
+        this.sexo = listData[0].salario;
+        this.salario = listData[0].salario;
+        this.vacunaCovid = listData[0].vacunaCovid;
+
+        this.formUpdateEmpleado.controls.nombres.setValue(this.nombre);
+        this.formUpdateEmpleado.controls.sexo.setValue(this.sexo);
+        this.formUpdateEmpleado.controls.salario.setValue(this.salario);
+        this.formUpdateEmpleado.controls.vacunaCovid.setValue(this.vacunaCovid);
       }
     );
   }
 
-  //Formulario para actualizar un empleado
-  formUpdateEmpleado = this._formBuilder.group({
-    nombres: ['',],
-    sexo: [''],
-    salario: ['',],
-    vacunaCovid: ['',],
-  });
-
   onSubmit() {
     let vacuna = this.formUpdateEmpleado.get('vacunaCovid').value;
 
-    if (vacuna == "si") {
+    if (vacuna == "0") {
       this.vacunado = true;
     } else {
       this.vacunado = false;
     }
 
     const actualizarEmpleado: ActualizarEmpleados = {
-      nombres: this.formUpdateEmpleado.get('nombres').value.toString(),
+      id: this.IdEmpleado,
+      nombres: this.formUpdateEmpleado.get('nombres').value,
       sexo: this.formUpdateEmpleado.get('sexo').value,
       salario: this.formUpdateEmpleado.get('salario').value,
       vacunaCovid: this.vacunado,
     }
 
-    this._empleadoService.actualizarEmpleado(actualizarEmpleado, this.IdEmpleado).subscribe(
+    this._empleadoService.actualizarEmpleado(actualizarEmpleado).subscribe(
       data => {
         this.showToasterSuccess("¡El empleado se actualizo con exito!", "Mensaje:")
         this.refresh();

@@ -25,8 +25,8 @@ export class EmpleadoService {
         return this._http.delete(`${environment.backendUrl}/api/Empleados/${id}`)
     }
 
-    actualizarEmpleado(actualizarEmpleado: ActualizarEmpleados, id: number) {
-        return this._http.put(`${environment.backendUrl}/api/Empleados/${id}`, actualizarEmpleado);
+    actualizarEmpleado(actualizarEmpleado: ActualizarEmpleados) {
+        return this._http.put(`${environment.backendUrl}/api/Empleados`, actualizarEmpleado);
     }
 
     getbyId(id: number) {
